@@ -24,16 +24,19 @@ function computerPlay()
 // Function that alerts a win/lose condition based on the two specified parameters
 function outcome(playerSelection, computerSelection)
 {
-    playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1);
-    computerSelection = computerSelection[0].toUpperCase() + computerSelection.slice(1);
+    // Creates playerSelectionCapitalized variable that converts the first letter of the string value in playerSelection to upper case
+    let playerSelectionCapitalized = playerSelection[0].toUpperCase() + playerSelection.slice(1);
+
+    // Creates computerSelectionCapitalized variable that converts the first letter of the string value in computerSelection to upper case
+    let computerSelectionCapitalized = computerSelection[0].toUpperCase() + computerSelection.slice(1);
 
     if ((playerSelection === `rock` && computerSelection === `scissors`) || (playerSelection === `paper` && computerSelection === `rock`) || (playerSelection === `scissors` && computerSelection === `paper`))
     {
-        alert(`You win! ${playerSelection} beats ${computerSelection}.`);
+        alert(`You win! ${playerSelectionCapitalized} beats ${computerSelectionCapitalized}.`);
     }
-    else
+    else if ((computerSelection === `rock` && playerSelection === `scissors`) || (computerSelection === `paper` && playerSelection === `rock`) || (computerSelection === `scissors` && playerSelection === `paper`))
     {
-        alert(`You lose! ${computerSelection} beats ${playerSelection}.`);
+        alert(`You lose! ${computerSelectionCapitalized} beats ${playerSelectionCapitalized}.`);
     }
 }
 
