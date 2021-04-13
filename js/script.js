@@ -24,6 +24,9 @@ function computerPlay()
 // Function that alerts a win/lose condition based on the two specified parameters
 function outcome(playerSelection, computerSelection)
 {
+    playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1);
+    computerSelection = computerSelection[0].toUpperCase() + computerSelection.slice(1);
+
     if ((playerSelection === `rock` && computerSelection === `scissors`) || (playerSelection === `paper` && computerSelection === `rock`) || (playerSelection === `scissors` && computerSelection === `paper`))
     {
         alert(`You win! ${playerSelection} beats ${computerSelection}.`);
