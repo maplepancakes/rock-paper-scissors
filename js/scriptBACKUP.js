@@ -67,24 +67,17 @@ function playRound()
     
 }
 
-// Function that returns data stored in button[`value`] tag when a button is clicked
-function clickButton()
-{
-    const button = document.querySelectorAll(`button`);
-
-    for (let i = 0; i < button.length; i++)
-    {
-        button[i].addEventListener(`click`, function()
-        {
-            return console.log(button[i][`value`]);
-        });
-    }
-}
-
 // Function that runs the game
 function game()
 {
-   playRound();
+    // Creates a numberOfRounds variable that is used to specify how many rounds of the game should be played
+    let numberOfRounds = 5;
+
+    for (let i = 1; i <= numberOfRounds; i++)
+    {
+        playRound();
+    }
 }
 
 // Function call 
+game();
