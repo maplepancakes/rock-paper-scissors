@@ -1,3 +1,3 @@
 PROJECT STATUS: In Progress
 
-Created using Javascript.
+Created using HTML, CSS, and JavaScript.
