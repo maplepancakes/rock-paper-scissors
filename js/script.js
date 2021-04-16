@@ -2,6 +2,8 @@ let playerChoice = ``;
 let playerScore = 0;
 let computerScore = 0;
 
+const noOfRounds = 5;
+
 // Function to verify if the player has keyed in one of the following inputs: `rock`, `paper`, `scissors`
 function verifyChoice(playerChoice)
 {
@@ -25,16 +27,16 @@ function computerPlay()
     return choice;
 }
 
-// Function that displays the winner who first reaches a score of 5
+// Function that displays the winner who first reaches a score of set by global variable noOfRounds
 function displayWinner(playerScore, computerScore)
 {
     const h1 = document.querySelector(`header center h1`);
 
-    if (playerScore > computerScore && playerScore === 5)
+    if (playerScore > computerScore && playerScore === noOfRounds)
     {
         h1.textContent = `Congratulations! You won.`;
     }
-    else if (computerScore > playerScore && computerScore === 5)
+    else if (computerScore > playerScore && computerScore === noOfRounds)
     {
         h1.textContent = 'You lost. Better luck next time.';
     }
@@ -78,7 +80,13 @@ function outcome(playerSelection, computerSelection)
         h1.textContent = `You lose! ${computerSelectionCapitalized} beats ${playerSelectionCapitalized}.`;
     }
 
-    displayWinner(playerScore, computerScore);  
+    if (playerScore === noOfRounds || computerScore === noOfRounds)
+    {
+        displayWinner(playerScore, computerScore);
+
+        playerScore = 0;
+        computerScore = 0;
+    }
 }
 
 // Function that plays a round of the game
