@@ -1,3 +1,7 @@
+let playerChoice = ``;
+let playerScore = 0;
+let computerScore = 0;
+
 // Function to verify if the player has keyed in one of the following inputs: `rock`, `paper`, `scissors`
 function verifyChoice(playerChoice)
 {
@@ -7,7 +11,7 @@ function verifyChoice(playerChoice)
     }
     else
     {
-        alert(`Choice is not valid!`);
+        return;
     }
 }
 
@@ -21,9 +25,36 @@ function computerPlay()
     return choice;
 }
 
+// Function that displays the winner who first reaches a score of 5
+function displayWinner(playerScore, computerScore)
+{
+    const h1 = document.querySelector(`header center h1`);
+
+    if (playerScore > computerScore && playerScore === 5)
+    {
+        h1.textContent = `Congratulations! You won.`;
+    }
+    else if (computerScore > playerScore && computerScore === 5)
+    {
+        h1.textContent = 'You lost. Better luck next time.';
+    }
+}
+
+// Function that updates scores
+function updateScore(playerScore, computerScore)
+{
+    const playerScoreDisplay = document.querySelector(`#player-score`);
+    const computerScoreDisplay = document.querySelector(`#computer-score`);
+
+    playerScoreDisplay.textContent = playerScore;
+    computerScoreDisplay.textContent = computerScore;
+}
+
 // Function that alerts a win/lose condition based on the two specified parameters
 function outcome(playerSelection, computerSelection)
 {
+    const h1 = document.querySelector(`header center h1`);
+
     // Creates playerSelectionCapitalized variable that converts the first letter of the string value in playerSelection to upper case
     let playerSelectionCapitalized = playerSelection[0].toUpperCase() + playerSelection.slice(1);
 
@@ -32,20 +63,27 @@ function outcome(playerSelection, computerSelection)
 
     if ((playerSelection === `rock` && computerSelection === `scissors`) || (playerSelection === `paper` && computerSelection === `rock`) || (playerSelection === `scissors` && computerSelection === `paper`))
     {
-        alert(`You win! ${playerSelectionCapitalized} beats ${computerSelectionCapitalized}.`);
+        playerScore++;
+
+        updateScore(playerScore, computerScore);
+
+        h1.textContent = `You win! ${playerSelectionCapitalized} beats ${computerSelectionCapitalized}.`;
     }
     else if ((computerSelection === `rock` && playerSelection === `scissors`) || (computerSelection === `paper` && playerSelection === `rock`) || (computerSelection === `scissors` && playerSelection === `paper`))
     {
-        alert(`You lose! ${computerSelectionCapitalized} beats ${playerSelectionCapitalized}.`);
+        computerScore++;
+
+        updateScore(playerScore, computerScore);
+
+        h1.textContent = `You lose! ${computerSelectionCapitalized} beats ${playerSelectionCapitalized}.`;
     }
+
+    displayWinner(playerScore, computerScore);  
 }
 
 // Function that plays a round of the game
 function playRound()
 {
-    // Creates a playerChoice variable that prompts user to input ONLY one of the three following choices: `Rock`, `Paper`, `Scissors`
-    let playerChoice = prompt(`Rock, Paper, or Scissors? (Type one of the aforementioned choices in full)`);
-
     // Converts value stored in playerChoice variable to lower case, for the purpose of making the value case-insensitive
     playerChoice = playerChoice.toLowerCase();
 
@@ -64,10 +102,9 @@ function playRound()
 
         outcome(playerChoice, computerChoice);
     }
-    
 }
 
-// Function that returns data stored in button[`value`] tag when a button is clicked
+// Function that plays a round of rock paper scissors whenever a button is clicked
 function clickButton()
 {
     const button = document.querySelectorAll(`button`);
@@ -76,15 +113,23 @@ function clickButton()
     {
         button[i].addEventListener(`click`, function()
         {
-            return console.log(button[i][`value`]);
+            playerChoice = button[i][`value`];
+
+            playRound();
         });
     }
 }
 
-// Function that runs the game
-function game()
+// Function to load main header
+function mainHeader()
 {
-   playRound();
+    const header = document.querySelector(`header center`);
+    let h1 = document.createElement(`h1`);
+
+    h1.textContent = `ROCK, PAPER, OR SCISSORS?`;
+    header.appendChild(h1);
 }
 
 // Function call 
+mainHeader();
+clickButton();
