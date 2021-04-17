@@ -28,7 +28,7 @@ function computerPlay()
 }
 
 // Function that displays the winner who first reaches a score of set by global variable noOfRounds
-function displayWinner(playerScore, computerScore)
+function displayWinner()
 {
     const h1 = document.querySelector(`header center h1`);
 
@@ -43,7 +43,7 @@ function displayWinner(playerScore, computerScore)
 }
 
 // Function that updates scores
-function updateScore(playerScore, computerScore)
+function updateScore()
 {
     const playerScoreDisplay = document.querySelector(`#player-score`);
     const computerScoreDisplay = document.querySelector(`#computer-score`);
@@ -67,7 +67,7 @@ function outcome(playerSelection, computerSelection)
     {
         playerScore++;
 
-        updateScore(playerScore, computerScore);
+        updateScore();
 
         h1.textContent = `You win! ${playerSelectionCapitalized} beats ${computerSelectionCapitalized}.`;
     }
@@ -75,14 +75,14 @@ function outcome(playerSelection, computerSelection)
     {
         computerScore++;
 
-        updateScore(playerScore, computerScore);
+        updateScore();
 
         h1.textContent = `You lose! ${computerSelectionCapitalized} beats ${playerSelectionCapitalized}.`;
     }
 
     if (playerScore === noOfRounds || computerScore === noOfRounds)
     {
-        displayWinner(playerScore, computerScore);
+        displayWinner();
 
         playerScore = 0;
         computerScore = 0;
