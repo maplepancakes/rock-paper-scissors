@@ -1,6 +1,6 @@
 # PROJECT STATUS: Completed
 
-A website to play a classic game that everybody knows and loves! 
+### Objective: To demonstrate a basic understanding of DOM manipulation.
 
 Created using HTML, CSS, and JavaScript.
 
